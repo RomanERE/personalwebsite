@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roman Herts | CV</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,22 +30,24 @@
         <main>
             <section>
                 <h2 data-i18n="about_title">Про мене</h2>
-                <p data-i18n="about_text">Займаюсь розробкою програмного та апаратного забезпечення. Маю досвід у
-                    організації та виробництві електронних пристроїв. Здобув іноземний досвід (Швейцарія) і прагну
-                    застосовувати його в Україні.</p>
+                <p data-i18n="about_text">
+                    Займаюсь розробкою систем на межі Hardware та Software. Маю досвід проектування PCB (KiCad) та створення IIoT-мереж. Спеціалізуюсь на архітектурі Python (Flask) та безпеці серверних вузлів.
+                </p>
             </section>
 
             <section>
                 <h2 data-i18n="exp_title">Досвід роботи</h2>
+                
                 <div class="card">
-                    <h3>libs Heerbrugg (Швейцарія)</h3>
+                    <h3 data-i18n="job1_company">libs Heerbrugg (Швейцарія)</h3>
                     <div class="sub" data-i18n="job1_sub">Практикант-електронік | 2024 — 2025</div>
                     <ul>
                         <li data-i18n="job1_1">Розробка електроніки та PCB у KiCad.</li>
                         <li data-i18n="job1_2">Мережа IIoT-метеостанцій.</li>
-                        <li data-i18n="job1_3">Виконання промислових замовлень.</li>
+                        <li data-i18n="job1_3">Виконання промислових замовлень для провідних компаній.</li>
                     </ul>
                 </div>
+
                 <div class="card">
                     <h3>CooKey Start-Up</h3>
                     <div class="sub" data-i18n="job2_sub">Project Manager / Backend Developer | 2022</div>
@@ -102,8 +102,9 @@
                 tagline: "Trainee Embedded / Backend / Cybersecurity",
                 location: "Львів, Україна",
                 about_title: "Про мене",
-                about_text: "Займаюсь розробкою програмного та апаратного забезпечення. Маю досвід у організації та виробництві електронних пристроїв. Здобув іноземний досвід (Швейцарія) і прагну застосовувати його в Україні для створення інноваційних рішень.",
+                about_text: "Займаюсь розробкою систем на межі Hardware та Software. Маю досвід проектування PCB (KiCad) та створення IIoT-мереж. Спеціалізуюсь на архітектурі Python (Flask) та безпеці серверних вузлів.",
                 exp_title: "Досвід роботи",
+                job1_company: "libs Heerbrugg (Швейцарія)",
                 job1_sub: "Практикант-електронік | Серпень 2024 — Жовтень 2025",
                 job1_1: "Розробка електроніки та проектування друкованих плат у KiCad.",
                 job1_2: "Створення персонального проєкту мережі IIoT-метеостанцій.",
@@ -126,8 +127,9 @@
                 tagline: "Trainee Embedded / Backend / Cybersecurity",
                 location: "Lviv, Ukraine",
                 about_title: "About Me",
-                about_text: "Software and hardware developer. Experience in electronics production. Gained international experience in Switzerland and aim to apply it in Ukraine for innovative solutions.",
+                about_text: "Bridging the gap between Hardware and Software. Experienced in PCB design (KiCad) and IIoT network deployment. Specialized in Python (Flask) architecture and server node security.",
                 exp_title: "Work Experience",
+                job1_company: "libs Heerbrugg (Switzerland)",
                 job1_sub: "Electronics Intern | Aug 2024 — Oct 2025",
                 job1_1: "Electronics development and PCB design in KiCad.",
                 job1_2: "Personal project: IIoT weather station network.",
@@ -153,6 +155,7 @@
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) el.innerText = translations[lang][key];
             });
+            
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
         }
@@ -163,12 +166,16 @@
         async function updateStats() {
             try {
                 const res = await fetch('data.php');
+                if (!res.ok) throw new Error();
                 const data = await res.json();
                 document.getElementById('temp').innerText = data.temp;
                 document.getElementById('ram').innerText = data.ram;
                 document.getElementById('uptime').innerText = data.uptime;
-            } catch (e) { }
+            } catch (e) {
+                console.error("Помилка отримання даних вузла");
+            }
         }
+        
         setInterval(updateStats, 3000);
         updateStats();
     </script>
