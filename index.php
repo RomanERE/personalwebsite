@@ -75,7 +75,7 @@
             </section>
         </main>
 
-        <aside>
+<aside>
             <div class="node-status">
                 <div class="node-header"><span class="blink">●</span> RPI_NODE</div>
                 <div class="stat-item">
@@ -89,6 +89,14 @@
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_uptime">Uptime</div>
                     <div class="stat-value" id="uptime" style="font-size: 0.8rem;">--</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label" data-i18n="mon_visitors">Unique IPs</div>
+                    <div class="stat-value" id="visitors">--</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label" data-i18n="mon_conn">Active Conn.</div>
+                    <div class="stat-value" id="connections">--</div>
                 </div>
             </div>
         </aside>
@@ -123,6 +131,8 @@
                 mon_temp: "Темп. CPU",
                 mon_ram: "ОЗП",
                 mon_uptime: "Час роботи",
+                mon_visitors: "Унікальні IP",
+                mon_conn: "Активні з'єдн.",
                 foot: "Роман Герц. Побудовано на Kali Linux & Nginx."
             },
             en: {
@@ -148,6 +158,8 @@
                 mon_temp: "CPU Temp",
                 mon_ram: "RAM Usage",
                 mon_uptime: "Uptime",
+                mon_visitors: "Unique IPs",
+                mon_conn: "Active Conn.",
                 foot: "Roman Herts. Built on Kali Linux & Nginx."
             }
         };
@@ -174,6 +186,8 @@
                 document.getElementById('temp').innerText = data.temp;
                 document.getElementById('ram').innerText = data.ram;
                 document.getElementById('uptime').innerText = data.uptime;
+                document.getElementById('visitors').innerText = data.visitors;
+                document.getElementById('connections').innerText = data.connections;
             } catch (e) {
                 console.error("Помилка отримання даних вузла");
             }
