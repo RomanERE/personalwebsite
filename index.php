@@ -23,7 +23,10 @@
             <div class="tagline" data-i18n="tagline">Trainee Embedded / Backend / Cybersecurity</div>
             <div class="contacts">
                 <a href="mailto:gercroman77@gmail.com">gercroman77@gmail.com</a>
-                <span data-i18n="location">Львів, Україна</span>
+                <a href="https://www.google.com/maps/place/Lviv,+Ukraine" target="_blank" rel="noopener noreferrer" class="location-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span data-i18n="location">Львів, Україна 🇺🇦</span>
+                </a>
             </div>
         </header>
 
@@ -100,7 +103,7 @@
             uk: {
                 name: "РОМАН ГЕРЦ",
                 tagline: "Trainee Embedded / Backend / Cybersecurity",
-                location: "Львів, Україна",
+                location: "Львів, Україна 🇺🇦",
                 about_title: "Про мене",
                 about_text: "Займаюсь розробкою систем на межі Hardware та Software. Маю досвід проектування PCB (KiCad) та створення IIoT-мереж. Спеціалізуюсь на архітектурі Python (Flask) та безпеці серверних вузлів.",
                 exp_title: "Досвід роботи",
@@ -125,7 +128,7 @@
             en: {
                 name: "ROMAN HERTS",
                 tagline: "Trainee Embedded / Backend / Cybersecurity",
-                location: "Lviv, Ukraine",
+                location: "Lviv, Ukraine 🇺🇦",
                 about_title: "About Me",
                 about_text: "Bridging the gap between Hardware and Software. Experienced in PCB design (KiCad) and IIoT network deployment. Specialized in Python (Flask) architecture and server node security.",
                 exp_title: "Work Experience",

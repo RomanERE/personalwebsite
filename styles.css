@@ -88,6 +88,27 @@ h1 {
     color: var(--text-dim);
     text-decoration: none;
     border-bottom: 1px dotted var(--accent);
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.contacts a:hover {
+    color: var(--text-main);
+    border-bottom-color: var(--text-main);
+}
+
+.location-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.location-link:hover .location-icon {
+    transform: translateY(-3px) scale(1.1);
+    stroke: var(--accent);
+}
+
+.location-icon {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s;
 }
 
 .node-status {
