@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-// Температура
+// CPU temperature
 $temp = shell_exec("vcgencmd measure_temp");
 $temp = str_replace(['temp=', "'C\n"], '', $temp);
 
