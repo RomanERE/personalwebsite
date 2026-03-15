@@ -4,87 +4,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме | Роман Герц</title>
+    <title>Роман Герц | Portfolio & Node</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0e14;
+            --card: #161b22;
+            --accent: #00ff41;
+            --text: #e6edf3;
+            --dim: #8b949e;
+            --border: rgba(0, 255, 65, 0.1);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Header */
+        header {
+            grid-column: 1 / -1;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        .tagline {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Experience Cards */
+        section {
+            margin-top: 40px;
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dim);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .card .date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        li {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        /* Monitoring Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .monitor {
+            background: rgba(0, 255, 65, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .monitor-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-item {
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--dim);
+            text-transform: uppercase;
+        }
+
+        .stat-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill {
+            background: #21262d;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid #30363d;
+        }
+    </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Роман Герц</h1>
-        <p><strong>Trainee Embedded-розробник | Trainee Backend-розробник | Trainee Спеціаліст з кібербезпеки</strong>
-        </p>
+    <div class="container">
+        <header>
+            <h1>РОМАН ГЕРЦ</h1>
+            <div class="tagline">Trainee Embedded / Backend / Cybersec</div>
+            <div style="font-size: 0.9rem; margin-top: 10px; color: var(--dim);">
+                gercroman77@gmail.com | +380682348454 | Lviv, UA
+            </div>
+        </header>
 
-        <address>
-            <p>Е-пошта: <a href="mailto:gercroman77@gmail.com">gercroman77@gmail.com</a></p>
-            <p>Телефон: <a href="tel:+380682348454">+38 (068) 23-484-54</a></p>
-        </address>
-    </header>
+        <main>
+            <section>
+                <h2>Досвід роботи</h2>
+                <div class="card">
+                    <h3>libs Heerbrugg (Швейцарія)</h3>
+                    <div class="date">Серпень 2024 — Жовтень 2025</div>
+                    <ul>
+                        <li>Розробка електроніки та PCB (KiCad).</li>
+                        <li>Проєкт метеостанцій IIoT.</li>
+                        <li>Організація замовлень для промислового сектору.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>CooKey Start-Up</h3>
+                    <div class="date">Січень 2022 — Липень 2022</div>
+                    <ul>
+                        <li>Project Management & Backend Development (Python/Flask).</li>
+                    </ul>
+                </div>
+            </section>
 
-    <main>
-        <section>
-            <h2>Про мене</h2>
-            <p>
-                Займаюсь розробкою програмного та апаратного забезпечення. Маю досвід у організації
-                виробництва
-                та виробництві електронних пристроїв. Здобув іноземний досвід і прагну застосовувати його в
-                Україні.
-            </p>
-        </section>
+            <section>
+                <h2>Освіта</h2>
+                <div class="card">
+                    <h3>GBS St. Gallen (Швейцарія)</h3>
+                    <p style="margin:0;">Інженерія електроніки | 2024 — 2025</p>
+                </div>
+                <div class="card">
+                    <h3>НУ «Львівська Політехніка»</h3>
+                    <p style="margin:0;">Кібербезпека | 2021 — 2028</p>
+                </div>
+            </section>
 
-        <section>
-            <h2>Освіта</h2>
-            <article>
-                <h3>НУ «Львівська Політехніка»</h3>
-                <p><strong>Ступінь бакалавра | Спеціальність «Кібербезпека»</strong></p>
-                <p><em>Вересень 2021 — Лютий 2023 | Лютий 2026 — Червень 2028 (Навчаюсь зараз)</em></p>
-            </article>
+            <section>
+                <h2>Навички</h2>
+                <div class="skills">
+                    <div class="skill">C/C++</div>
+                    <div class="skill">Python</div>
+                    <div class="skill">Linux</div>
+                    <div class="skill">PCB Design</div>
+                    <div class="skill">German B2</div>
+                    <div class="skill">English C1</div>
+                </div>
+            </section>
+        </main>
 
-            <article>
-                <h3>GBS St. Gallen (Швейцарія)</h3>
-                <p>Дуальна технічна освіта за спеціальністю «Інженерія електроніки»</p>
-                <p><em>2024 — 2025 (Навчання німецькою мовою)</em></p>
-            </article>
-        </section>
+        <aside class="sidebar">
+            <div class="monitor">
+                <div class="monitor-title"><span style="animation: blink 1.5s infinite;">●</span> RPI_STATUS</div>
+                <div class="stat-item">
+                    <div class="stat-label">CPU Temperature</div>
+                    <div class="stat-val" id="temp">--°C</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">RAM Usage</div>
+                    <div class="stat-val" id="ram">--%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Uptime</div>
+                    <div class="stat-val" id="uptime" style="font-size: 0.8rem;">--</div>
+                </div>
+                <div
+                    style="font-size: 0.6rem; color: var(--dim); border-top: 1px solid var(--border); padding-top: 10px;">
+                    Securely hosted via Cloudflare
+                </div>
+            </div>
+        </aside>
+    </div>
 
-        <section>
-            <h2>Досвід роботи</h2>
+    <script>
+        async function updateStats() {
+            try {
+                const res = await fetch('data.php');
+                const data = await res.json();
+                document.getElementById('temp').innerText = data.temp;
+                document.getElementById('ram').innerText = data.ram;
+                document.getElementById('uptime').innerText = data.uptime;
+            } catch (e) { console.log("Update failed"); }
+        }
+        setInterval(updateStats, 3000);
+        updateStats();
+    </script>
 
-            <article>
-                <h3>Практикант-електронік | libs Heerbrugg (Швейцарія)</h3>
-                <p><em>Серпень 2024 — Жовтень 2025</em></p>
-                <ul>
-                    <li>Розробляв електроніку та друковані плати (KiCad).</li>
-                    <li>Розробляв персональний проєкт мережі IIoT-метеостанцій.</li>
-                    <li>Організовував роботу з виконання замовлень швейцарських компаній.</li>
-                </ul>
-            </article>
-
-            <article>
-                <h3>Проєкт-менеджер / Backend-розробник | CooKey Start-Up</h3>
-                <p><em>Січень 2022 — липень 2022</em></p>
-                <ul>
-                    <li>Організовував роботу над проєктом та працював над технічною частиною (Python+Flask).</li>
-                </ul>
-            </article>
-        </section>
-
-        <section>
-            <h2>Ключові навички</h2>
-            <ul>
-                <li>Створення та аналіз електротехнічних схем.</li>
-                <li>Розробка ПЗ (С, Python).</li>
-                <li>Досвід роботи з мікроконтролерами Arduino та ESP.</li>
-                <li>Робота з Raspberry Pi (сервер) у комбінації з HTML та MySQL.</li>
-                <li>Мови: Англійська (Advanced), Німецька (Upper-Intermediate).</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <hr>
-        <p>&copy; 2026 Львів, Україна. Роман Герц.</p>
-    </footer>
-
+    <style>
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
 
 </html>
