@@ -7,24 +7,26 @@
     <title>Roman Herts | CV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css?v=0.1.1">
 </head>
 
 <body>
-    <div class="lang-switcher">
-        <button class="lang-btn" onclick="setLang('uk')" id="btn-uk">UA</button>
-        <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-    </div>
-
     <div class="container">
         <header>
+            <div class="lang-switcher">
+                <button class="lang-btn" onclick="setLang('uk')" id="btn-uk">UA</button>
+                <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+                <button class="lang-btn" onclick="toggleTheme()" id="theme-btn">DARK</button>
+            </div>
             <h1 data-i18n="name">РОМАН ГЕРЦ</h1>
             <div class="tagline" data-i18n="tagline">Trainee Embedded / Backend / Cybersecurity</div>
             <div class="contacts">
                 <a href="mailto:gercroman77@gmail.com">gercroman77@gmail.com</a>
                 <a href="https://www.google.com/maps/place/Lviv,+Ukraine" target="_blank" rel="noopener noreferrer" class="location-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-icon">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
                     <span data-i18n="location">Львів, Україна 🇺🇦</span>
                 </a>
             </div>
@@ -40,14 +42,14 @@
 
             <section>
                 <h2 data-i18n="exp_title">Досвід роботи</h2>
-                
+
                 <div class="card">
                     <h3 data-i18n="job1_company">libs Heerbrugg (Швейцарія)</h3>
-                    <div class="sub" data-i18n="job1_sub">Практикант-електронік | 2024 — 2025</div>
+                    <div class="sub" data-i18n="job1_sub">Практикант-електронік | Серпень 2024 — Жовтень 2025</div>
                     <ul>
-                        <li data-i18n="job1_1">Розробка електроніки та PCB у KiCad.</li>
-                        <li data-i18n="job1_2">Мережа IIoT-метеостанцій.</li>
-                        <li data-i18n="job1_3">Виконання промислових замовлень для провідних компаній.</li>
+                        <li data-i18n="job1_1">Розробка електроніки та проектування друкованих плат у KiCad.</li>
+                        <li data-i18n="job1_2">Створення персонального проєкту мережі IIoT-метеостанцій.</li>
+                        <li data-i18n="job1_3">Організація процесів виконання замовлень для провідних швейцарських компаній.</li>
                     </ul>
                 </div>
 
@@ -55,7 +57,7 @@
                     <h3>CooKey Start-Up</h3>
                     <div class="sub" data-i18n="job2_sub">Project Manager / Backend Developer | 2022</div>
                     <ul>
-                        <li data-i18n="job2_1">Архітектура на Python (Flask).</li>
+                        <li data-i18n="job2_1">Розробка архітектури на Python (Flask).</li>
                     </ul>
                 </div>
             </section>
@@ -75,25 +77,30 @@
             </section>
         </main>
 
-<aside>
+        <aside>
             <div class="node-status">
                 <div class="node-header"><span class="blink">●</span> RPI_NODE</div>
+
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_temp">CPU Temp</div>
                     <div class="stat-value" id="temp">--°C</div>
                 </div>
+
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_ram">RAM Usage</div>
                     <div class="stat-value" id="ram">--%</div>
                 </div>
+
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_uptime">Uptime</div>
                     <div class="stat-value" id="uptime" style="font-size: 0.8rem;">--</div>
                 </div>
+
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_visitors">Unique IPs</div>
                     <div class="stat-value" id="visitors">--</div>
                 </div>
+
                 <div class="stat-item">
                     <div class="stat-label" data-i18n="mon_conn">Active Conn.</div>
                     <div class="stat-value" id="connections">--</div>
@@ -166,36 +173,97 @@
 
         function setLang(lang) {
             localStorage.setItem('lang', lang);
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerText = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
             });
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('btn-uk').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
             document.getElementById(`btn-${lang}`).classList.add('active');
+        }
+
+        function getAutoTheme() {
+            const hour = new Date().getHours();
+            return (hour >= 7 && hour < 21) ? 'light' : 'dark';
+        }
+
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            const themeBtn = document.getElementById('theme-btn');
+
+            if (theme === 'light') {
+                root.classList.add('light-mode');
+                themeBtn.textContent = 'DARK';
+                themeBtn.classList.add('active');
+            } else {
+                root.classList.remove('light-mode');
+                themeBtn.textContent = 'LIGHT';
+                themeBtn.classList.remove('active');
+            }
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('theme', theme);
+            localStorage.setItem('theme-mode', 'manual');
+            applyTheme(theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        }
+
+        function initTheme() {
+            const themeMode = localStorage.getItem('theme-mode');
+            const savedTheme = localStorage.getItem('theme');
+
+            if (themeMode === 'manual' && savedTheme) {
+                applyTheme(savedTheme);
+            } else {
+                const autoTheme = getAutoTheme();
+                localStorage.setItem('theme-mode', 'auto');
+                applyTheme(autoTheme);
+            }
+        }
+
+        function refreshAutoTheme() {
+            const themeMode = localStorage.getItem('theme-mode');
+            if (themeMode !== 'manual') {
+                applyTheme(getAutoTheme());
+            }
         }
 
         const savedLang = localStorage.getItem('lang') || 'uk';
         setLang(savedLang);
 
+        initTheme();
+
         async function updateStats() {
             try {
-                const res = await fetch('data.php');
-                if (!res.ok) throw new Error();
+                const res = await fetch('data.php', { cache: 'no-store' });
+                if (!res.ok) throw new Error('Failed to fetch stats');
+
                 const data = await res.json();
-                document.getElementById('temp').innerText = data.temp;
-                document.getElementById('ram').innerText = data.ram;
-                document.getElementById('uptime').innerText = data.uptime;
-                document.getElementById('visitors').innerText = data.visitors;
-                document.getElementById('connections').innerText = data.connections;
+
+                document.getElementById('temp').textContent = data.temp;
+                document.getElementById('ram').textContent = data.ram;
+                document.getElementById('uptime').textContent = data.uptime;
+                document.getElementById('visitors').textContent = data.visitors;
+                document.getElementById('connections').textContent = data.connections;
             } catch (e) {
-                console.error("Помилка отримання даних вузла");
+                console.error("Помилка отримання даних вузла:", e);
             }
         }
-        
-        setInterval(updateStats, 3000);
+
         updateStats();
-    </script>
+        setInterval(updateStats, 3000);
+
+        setInterval(refreshAutoTheme, 60000);
+</script>
 </body>
 
 </html>
