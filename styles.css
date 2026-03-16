@@ -126,10 +126,12 @@ html.light-mode h1 {
 }
 
 .contacts a {
+    display: inline-flex;
     color: var(--text-dim);
     text-decoration: none;
     border-bottom: 1px dotted var(--accent);
     transition: color 0.3s, border-color 0.3s;
+    align-items: center;
 }
 
 .contacts a:hover {

@@ -7,7 +7,7 @@
     <title>Roman Herts | CV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=0.1.1">
+    <link rel="stylesheet" href="/styles.css?v=0.1.4">
 </head>
 
 <body>
