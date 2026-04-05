@@ -207,8 +207,6 @@
         }
 
         function setTheme(theme) {
-            localStorage.setItem('theme', theme);
-            localStorage.setItem('theme-mode', 'manual');
             applyTheme(theme);
         }
 
@@ -218,23 +216,11 @@
         }
 
         function initTheme() {
-            const themeMode = localStorage.getItem('theme-mode');
-            const savedTheme = localStorage.getItem('theme');
-
-            if (themeMode === 'manual' && savedTheme) {
-                applyTheme(savedTheme);
-            } else {
-                const autoTheme = getAutoTheme();
-                localStorage.setItem('theme-mode', 'auto');
-                applyTheme(autoTheme);
-            }
+            applyTheme(getAutoTheme());
         }
 
         function refreshAutoTheme() {
-            const themeMode = localStorage.getItem('theme-mode');
-            if (themeMode !== 'manual') {
-                applyTheme(getAutoTheme());
-            }
+            applyTheme(getAutoTheme());
         }
 
         const savedLang = localStorage.getItem('lang') || 'uk';
