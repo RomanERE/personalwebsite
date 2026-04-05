@@ -38,7 +38,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'gercroman77@gmail.com';      // Gmail акаунт
-    $mail->Password   = 'toks pgfs ngqr movb';          // App Password з Google
+    $mail->Password   = 'jcjo vvsg lmkp kcnz';          // App Password з Google
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
