@@ -7,7 +7,7 @@
     <title>Roman Herts | CV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=0.1.4">
+    <link rel="stylesheet" href="/styles.css?v=0.1.6">
 </head>
 
 <body>
@@ -113,6 +113,40 @@
         </footer>
     </div>
 
+
+    <div class="modal-overlay" id="feedback-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+        <div class="modal">
+            <button class="modal-close" id="modal-close-btn" aria-label="Закрити">&times;</button>
+            <p class="modal-title" id="modal-heading" data-i18n="modal_title">Зворотний зв'язок</p>
+            <p class="modal-sub" data-i18n="modal_sub">Залиш повідомлення&mdash;відповім найближчим часом.</p>
+
+            <form class="modal-form" id="feedback-form" novalidate>
+                <div>
+                    <label for="fb-name" data-i18n="modal_name">Ім'я</label>
+                    <input type="text" id="fb-name" name="name" placeholder="Roman" required>
+                </div>
+                <div>
+                    <label for="fb-email">Email</label>
+                    <input type="email" id="fb-email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div>
+                    <label for="fb-phone" data-i18n="modal_phone">Номер телефону</label>
+                    <input type="tel" id="fb-phone" name="phone" placeholder="+380 XX XXX XX XX">
+                </div>
+                <div>
+                    <label for="fb-message" data-i18n="modal_msg">Повідомлення</label>
+                    <textarea id="fb-message" name="message" placeholder="..."></textarea>
+                </div>
+                <button type="submit" class="modal-submit" id="modal-submit-btn" data-i18n="modal_send">Відправити</button>
+            </form>
+
+            <div class="modal-success" id="modal-success">
+                <span class="modal-success-icon">&#10003;</span>
+                <p data-i18n="modal_ok">Дякую! Повідомлення надіслано.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         const translations = {
             uk: {
@@ -140,7 +174,14 @@
                 mon_uptime: "Час роботи",
                 mon_visitors: "Унікальні IP",
                 mon_conn: "Активні з'єдн.",
-                foot: "Роман Герц. Побудовано на Kali Linux & Nginx."
+                foot: "Роман Герц. Побудовано на Kali Linux & Nginx.",
+                modal_title: "Зворотний зв'язок",
+                modal_sub: "Залиш повідомлення—відповім найближчим часом.",
+                modal_name: "Ім'я",
+                modal_phone: "Номер телефону",
+                modal_msg: "Повідомлення",
+                modal_send: "Відправити",
+                modal_ok: "Дякую! Повідомлення надіслано."
             },
             en: {
                 name: "ROMAN HERTS",
@@ -167,7 +208,14 @@
                 mon_uptime: "Uptime",
                 mon_visitors: "Unique IPs",
                 mon_conn: "Active Conn.",
-                foot: "Roman Herts. Built on Kali Linux & Nginx."
+                foot: "Roman Herts. Built on Kali Linux & Nginx.",
+                modal_title: "Feedback",
+                modal_sub: "Leave a message\u2014I'll get back to you soon.",
+                modal_name: "Name",
+                modal_phone: "Phone number",
+                modal_msg: "Message",
+                modal_send: "Send",
+                modal_ok: "Thank you! Message sent."
             }
         };
 
@@ -249,6 +297,52 @@
         setInterval(updateStats, 3000);
 
         setInterval(refreshAutoTheme, 60000);
+
+        (function () {
+            const overlay  = document.getElementById('feedback-overlay');
+            const closeBtn = document.getElementById('modal-close-btn');
+            const form     = document.getElementById('feedback-form');
+            const success  = document.getElementById('modal-success');
+
+            function openModal() {
+                overlay.classList.add('show');
+            }
+
+            function closeModal() {
+                overlay.classList.remove('show');
+            }
+
+            setTimeout(openModal, 60000);
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeModal();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const btn = document.getElementById('modal-submit-btn');
+                btn.disabled = true;
+                btn.textContent = '...';
+
+                const body = new FormData(form);
+
+                try {
+                    const res = await fetch('contact.php', { method: 'POST', body });
+                    if (!res.ok) throw new Error();
+                    form.style.display = 'none';
+                    success.style.display = 'block';
+                    setTimeout(closeModal, 3000);
+                } catch {
+                    btn.disabled = false;
+                    const lang = localStorage.getItem('lang') || 'uk';
+                    btn.textContent = lang === 'en' ? 'Error. Try again.' : 'Помилка. Спробуй ще.';
+                }
+            });
+        })();
 </script>
 </body>
 
