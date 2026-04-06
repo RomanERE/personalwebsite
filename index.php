@@ -343,7 +343,7 @@
                 }
             });
         })();
-</script>
+    </script>
 </body>
 
 </html>
