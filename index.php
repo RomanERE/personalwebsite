@@ -7,10 +7,13 @@
     <title>Roman Herts | CV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=0.1.6">
+    <link rel="stylesheet" href="/styles.css?v=0.1.7">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
+    <canvas id="bg-canvas"></canvas>
     <div class="container">
         <header>
             <div class="lang-switcher">
@@ -247,10 +250,12 @@
                 root.classList.add('light-mode');
                 themeBtn.textContent = 'DARK';
                 themeBtn.classList.add('active');
+                if (window.updateThreeTheme) window.updateThreeTheme(true);
             } else {
                 root.classList.remove('light-mode');
                 themeBtn.textContent = 'LIGHT';
                 themeBtn.classList.remove('active');
+                if (window.updateThreeTheme) window.updateThreeTheme(false);
             }
         }
 
@@ -347,6 +352,98 @@
                     btn.textContent = lang === 'en' ? 'Error. Try again.' : 'Помилка. Спробуй ще.';
                 }
             });
+        })();
+    </script>
+
+    <script>
+        // Three.js Background Animation
+        (function() {
+            const canvas = document.getElementById('bg-canvas');
+            if (!canvas || typeof THREE === 'undefined') return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Create particles
+            const particlesCount = 700;
+            const posArray = new Float32Array(particlesCount * 3);
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 15;
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const isLight = document.documentElement.classList.contains('light-mode');
+            const material = new THREE.PointsMaterial({
+                size: 0.025,
+                color: isLight ? 0x00aa2f : 0x00ff41,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particlesMesh = new THREE.Points(geometry, material);
+            scene.add(particlesMesh);
+
+            camera.position.z = 3;
+
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            let windowHalfX = window.innerWidth / 2;
+            let windowHalfY = window.innerHeight / 2;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX - windowHalfX);
+                mouseY = (event.clientY - windowHalfY);
+            });
+
+            window.addEventListener('resize', () => {
+                windowHalfX = window.innerWidth / 2;
+                windowHalfY = window.innerHeight / 2;
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            const clock = new THREE.Clock();
+            function animate() {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                // Base particle rotation
+                particlesMesh.rotation.y = elapsedTime * 0.03;
+                particlesMesh.rotation.x = elapsedTime * 0.02;
+
+                // Mouse interactive rotation
+                targetX = mouseX * 0.0005;
+                targetY = mouseY * 0.0005;
+                
+                particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+                particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Export to window for theme switching
+            window.updateThreeTheme = function(isLightMode) {
+                if (material) {
+                    material.color.setHex(isLightMode ? 0x00aa2f : 0x00ff41);
+                    if (isLightMode) {
+                        material.blending = THREE.NormalBlending;
+                        material.opacity = 0.5;
+                    } else {
+                        material.blending = THREE.AdditiveBlending;
+                        material.opacity = 0.8;
+                    }
+                }
+            };
         })();
     </script>
 </body>
