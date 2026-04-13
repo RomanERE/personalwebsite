@@ -258,7 +258,10 @@
             applyTheme(theme);
         }
 
+        let isThemeManuallySet = false;
+
         function toggleTheme() {
+            isThemeManuallySet = true;
             const currentTheme = document.documentElement.classList.contains('light-mode') ? 'light' : 'dark';
             setTheme(currentTheme === 'light' ? 'dark' : 'light');
         }
@@ -268,7 +271,9 @@
         }
 
         function refreshAutoTheme() {
-            applyTheme(getAutoTheme());
+            if (!isThemeManuallySet) {
+                applyTheme(getAutoTheme());
+            }
         }
 
         const savedLang = localStorage.getItem('lang') || 'uk';
