@@ -7,7 +7,7 @@
     <title>Roman Herts | CV</title>
 
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=0.1.7">
+    <link rel="stylesheet" href="/styles.css?v=0.1.9">
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
@@ -24,7 +24,7 @@
             <h1 data-i18n="name">РОМАН ГЕРЦ</h1>
             <div class="tagline" data-i18n="tagline">Trainee Embedded / Backend / Cybersecurity</div>
             <div class="contacts">
-                <a href="mailto:gercroman77@gmail.com">gercroman77@gmail.com</a>
+                <button class="contact-btn" onclick="openModal()" data-i18n="contact_btn">Написати мені</button>
                 <a href="https://www.google.com/maps/place/Lviv,+Ukraine" target="_blank" rel="noopener noreferrer" class="location-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-icon">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -184,6 +184,7 @@
                 modal_phone: "Номер телефону",
                 modal_msg: "Повідомлення",
                 modal_send: "Відправити",
+                contact_btn: "Написати мені",
                 modal_ok: "Дякую! Повідомлення надіслано."
             },
             en: {
@@ -218,6 +219,7 @@
                 modal_phone: "Phone number",
                 modal_msg: "Message",
                 modal_send: "Send",
+                contact_btn: "Contact Me",
                 modal_ok: "Thank you! Message sent."
             }
         };
@@ -314,7 +316,7 @@
             const form     = document.getElementById('feedback-form');
             const success  = document.getElementById('modal-success');
 
-            function openModal() {
+            window.openModal = function() {
                 overlay.classList.add('show');
             }
 
