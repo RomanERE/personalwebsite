@@ -1,0 +1,35 @@
+{
+  "name": "roman-cv-loopback",
+  "version": "1.0.0",
+  "description": "CV/Portfolio LoopBack 4 backend — Variant 29",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "lb-tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "dev": "npm run build && node .",
+    "tunnel": "npx localtunnel --port 3000"
+  },
+  "dependencies": {
+    "@loopback/boot": "^7.0.10",
+    "@loopback/core": "^6.1.6",
+    "@loopback/rest": "^14.0.10",
+    "@types/nodemailer": "^8.0.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0",
+    "nodemailer": "^8.0.5"
+  },
+  "devDependencies": {
+    "@loopback/build": "^11.0.10",
+    "localtunnel": "^2.0.0",
+    "typescript": "^5.0.0"
+  }
+}
