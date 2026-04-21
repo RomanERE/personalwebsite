@@ -16,28 +16,20 @@ async function run(cmd: string): Promise<string> {
 export class StatsController {
   @get('/data.php', {responses: {'200': {description: 'System stats'}}})
   async getStats(): Promise<object> {
-    const [tempRaw, memRaw, uptimeRaw, visitorsRaw, connRaw] = await Promise.all([
-      run('vcgencmd measure_temp'),
-      run('free -m'),
+    const [tempRaw, ramRaw, uptimeRaw, visitorsRaw, connRaw] = await Promise.all([
+      run("vcgencmd measure_temp | egrep -o '[0-9.]+'"),
+      run("free | grep Mem | awk '{print int($3/$2 * 100)}'"),
       run('uptime -p'),
-      run("awk '{print }' /var/log/nginx/access.log | sort -u | wc -l"),
-      run('ss -tn state established | tail -n +2 | wc -l'),
+      run("awk '{print $1}' /var/log/nginx/access.log | sort | uniq | wc -l"),
+      run('ss -tn state established | wc -l'),
     ]);
 
-    const temp = tempRaw.replace('temp=', '') || '--';
+    const temp = tempRaw ? tempRaw + '°C' : '--°C';
+    const ram  = ramRaw  ? ramRaw  + '%'  : '--%';
+    const uptime = uptimeRaw.replace(/^up /, '') || '--';
+    const visitors = visitorsRaw || '0';
+    const conn = parseInt(connRaw) > 0 ? String(parseInt(connRaw) - 1) : '0';
 
-    const memLine = memRaw.split('\n').find(l => l.startsWith('Mem:')) ?? '';
-    const memParts = memLine.split(/\s+/);
-    const ram = memParts[1] && memParts[2]
-      ? Math.round((+memParts[2] / +memParts[1]) * 100) + '%'
-      : '--';
-
-    return {
-      temp,
-      ram,
-      uptime: uptimeRaw || '--',
-      visitors: visitorsRaw || '0',
-      connections: connRaw || '0',
-    };
+    return {temp, ram, uptime, visitors, connections: conn};
   }
 }
