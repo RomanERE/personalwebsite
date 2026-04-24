@@ -78,6 +78,30 @@
                     <span class="skill-tag" data-i18n="skill_en">Англійська (C1)</span>
                 </div>
             </section>
+
+            <section>
+                <h2 data-i18n="edu_title">Освіта</h2>
+
+                <div class="card">
+                    <h3 data-i18n="edu1_company">НУ «Львівська Політехніка»</h3>
+                    <div class="sub" data-i18n="edu1_sub">Бакалавр | 2021 — 2023 | 2026 — дотепер</div>
+                    <ul>
+                        <li data-i18n="edu1_1">Спеціальність «Кібербезпека».</li>
+                        <li data-i18n="edu1_2">Спеціалізація в адмініструванні систем кібербезпеки.</li>
+                        <li data-i18n="edu1_3">Backend-розробник з навичками C, Python, MySQL.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>GBS St. Gallen</h3>
+                    <div class="sub" data-i18n="edu2_sub">Технічна освіта | 2024 — 2025 | Припинено через повернення в Україну</div>
+                    <ul>
+                        <li data-i18n="edu2_1">Дуальна технічна освіта за спеціальністю «Електроніка» та практика у технічній компанії.</li>
+                        <li data-i18n="edu2_2">Навчання проводилось німецькою мовою.</li>
+                        <li data-i18n="edu2_3">Висока успішність у фахових предметах: Електроніка, Електротехніка, Розробка апаратного та програмного забезпечення.</li>
+                    </ul>
+                </div>
+            </section>
         </main>
 
         <aside>
@@ -172,6 +196,16 @@
                 skill_iiot: "Архітектура IIoT",
                 skill_de: "Німецька (B2)",
                 skill_en: "Англійська (C1)",
+                edu_title: "Освіта",
+                edu1_company: "НУ «Львівська Політехніка»",
+                edu1_sub: "Бакалавр | 2021 — 2023 | 2026 — дотепер",
+                edu1_1: "Спеціальність «Кібербезпека».",
+                edu1_2: "Спеціалізація в адмініструванні систем кібербезпеки.",
+                edu1_3: "Backend-розробник з навичками C, Python, MySQL.",
+                edu2_sub: "Технічна освіта | 2024 — 2025 | Припинено через повернення в Україну",
+                edu2_1: "Дуальна технічна освіта за спеціальністю «Електроніка» та практика у технічній компанії.",
+                edu2_2: "Навчання проводилось німецькою мовою.",
+                edu2_3: "Висока успішність у фахових предметах: Електроніка, Електротехніка, Розробка апаратного та програмного забезпечення.",
                 mon_temp: "Темп. CPU",
                 mon_ram: "ОЗП",
                 mon_uptime: "Час роботи",
@@ -207,6 +241,16 @@
                 skill_iiot: "IIoT Architecture",
                 skill_de: "German (B2)",
                 skill_en: "English (C1)",
+                edu_title: "Education",
+                edu1_company: "Lviv Polytechnic National University",
+                edu1_sub: "Bachelor's | 2021 — 2023 | 2026 — present",
+                edu1_1: "Cybersecurity specialty.",
+                edu1_2: "Specialization in cybersecurity systems administration.",
+                edu1_3: "Backend developer with C, Python, MySQL skills.",
+                edu2_sub: "Technical Education | 2024 — 2025 | Discontinued due to return to Ukraine",
+                edu2_1: "Dual technical education in Electronics with industry practice.",
+                edu2_2: "Instruction conducted in German.",
+                edu2_3: "Top performer in Electronics, Electrical Engineering, and Hardware/Software Development.",
                 mon_temp: "CPU Temp",
                 mon_ram: "RAM Usage",
                 mon_uptime: "Uptime",
